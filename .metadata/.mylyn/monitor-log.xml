@@ -1,0 +1,88 @@
+<interactionEvent>
+	<kind>command</kind>
+	<date>2019-12-11 17:52:02.225 CET</date>
+	<endDate>2019-12-11 17:52:02.225 CET</endDate>
+	<originId>org.eclipse.e4.ui.model.application.ui.advanced.impl.PerspectiveImpl</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>toolbar</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
+<interactionEvent>
+	<kind>preference</kind>
+	<date>2019-12-11 17:52:09.745 CET</date>
+	<endDate>2019-12-11 17:52:09.745 CET</endDate>
+	<originId>org.eclipse.jdt.ui.JavaPerspective</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>perspective changed: actionSetShow</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
+<interactionEvent>
+	<kind>command</kind>
+	<date>2019-12-11 17:52:26.162 CET</date>
+	<endDate>2019-12-11 17:52:26.162 CET</endDate>
+	<originId>org.eclipse.ui.internal.WorkbenchWindow</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>activated</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
+<interactionEvent>
+	<kind>command</kind>
+	<date>2019-12-11 17:52:30.278 CET</date>
+	<endDate>2019-12-11 17:52:30.278 CET</endDate>
+	<originId>org.eclipse.ui.actions.NewWizardMenu</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>menu</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
+<interactionEvent>
+	<kind>command</kind>
+	<date>2019-12-11 17:52:46.319 CET</date>
+	<endDate>2019-12-11 17:52:46.319 CET</endDate>
+	<originId>org.eclipse.ui.internal.WorkbenchWindow</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>activated</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
+<interactionEvent>
+	<kind>command</kind>
+	<date>2019-12-11 17:54:23.153 CET</date>
+	<endDate>2019-12-11 17:54:23.153 CET</endDate>
+	<originId>org.eclipse.ui.internal.WorkbenchWindow</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>activated</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
+<interactionEvent>
+	<kind>command</kind>
+	<date>2019-12-11 17:55:13.953 CET</date>
+	<endDate>2019-12-11 17:55:13.953 CET</endDate>
+	<originId>org.eclipse.ui.internal.WorkbenchWindow</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>activated</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
+<interactionEvent>
+	<kind>command</kind>
+	<date>2019-12-11 17:55:18.610 CET</date>
+	<endDate>2019-12-11 17:55:18.610 CET</endDate>
+	<originId>org.eclipse.ui.internal.WorkbenchWindow</originId>
+	<structureKind>null</structureKind>
+	<structureHandle>gZmLkbazE00TxC8oVszpqUbRzow=/K+iMpCQsduglOsYkdIUQZQMtaDM=</structureHandle>
+	<navigation>null</navigation>
+	<delta>activated</delta>
+	<interestContribution>1.0</interestContribution>
+</interactionEvent>
