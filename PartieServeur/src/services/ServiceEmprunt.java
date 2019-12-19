@@ -26,11 +26,20 @@ private static int cpt = 1;
 		try {
 			BufferedReader in = new BufferedReader (new InputStreamReader(client.getInputStream()));
 			PrintWriter out = new PrintWriter (client.getOutputStream ( ), true);
-			String line = in.readLine();
-			System.out.println("Connexion "+this.numero+" <-- "+line);
-			String invLine = new String (new StringBuffer(line).reverse());
-			out.println(invLine);
-			System.out.println("Connexion "+this.numero+" --> "+invLine);
+			out.println("Tapez le numéro d'un livre a Emprunter :");
+			String reponse = in.readLine();
+			Integer numeroLu = null;
+			try {
+				 numeroLu = Integer.valueOf(reponse);
+			} catch (NumberFormatException e) {
+				e.printStackTrace();
+			}
+			if (numeroLu != null) {
+				out.println("Donnez votre identifiant.");
+				enregistrerEmprunt(numeroLu,);
+			}
+			
+			
 		}
 		catch (IOException e) {
 		}
