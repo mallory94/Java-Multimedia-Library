@@ -6,26 +6,22 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+
 import Serveur.Abonne;
 import Serveur.Bibliotheque;
 import Serveur.EmpruntException;
 
-public class ServiceEmprunt {
-private static int cpt = 1;
+public class ServiceEmprunt extends Service implements Runnable {
 	
-	private final int numero;
-	private final Socket client;
-	
-	ServiceEmprunt(Socket socket) {
-		this.numero = cpt ++;
-		this.client = socket;
+	public ServiceEmprunt(Socket socket) {
+		super(socket);
 	}
 
 	public void run() {
-		System.out.println("*********Connexion "+this.numero+" démarrée");
+		System.out.println("*********Connexion "+this.getNumero()+" démarrée");
 		try {
-			BufferedReader in = new BufferedReader (new InputStreamReader(client.getInputStream()));
-			PrintWriter out = new PrintWriter (client.getOutputStream ( ), true);
+			BufferedReader in = new BufferedReader (new InputStreamReader(this.getSocket().getInputStream()));
+			PrintWriter out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
 			out.println("Tapez le numéro d'un livre a Emprunter :");
 			String reponse = in.readLine();
 			Integer numeroLu = null;
@@ -36,7 +32,7 @@ private static int cpt = 1;
 			}
 			if (numeroLu != null) {
 				out.println("Donnez votre identifiant.");
-				enregistrerEmprunt(numeroLu,);
+				//enregistrerEmprunt(numeroLu,); // c'est casser
 			}
 			
 			
@@ -45,12 +41,12 @@ private static int cpt = 1;
 		}
 		//catch l'Emprunt exception
 		
-		System.out.println("*********Connexion "+this.numero+" terminée");
-		try {client.close();} catch (IOException e2) {}
+		System.out.println("*********Connexion "+this.getNumero()+" terminée");
+		try {this.getSocket().close();} catch (IOException e2) {}
 	}
 	
 	protected void finalize() throws Throwable {
-		 client.close(); 
+		this.getSocket().close(); 
 	}
 	
 	public void enregistrerEmprunt(int numeroDocument, Abonne abonne) throws EmpruntException {
