@@ -2,10 +2,10 @@ package Appli;
 
 import java.io.IOException;
 
-import Serveur.Bibliotheque;
 import Serveur.ServeurEmprunt;
 import Serveur.ServeurReservation;
 import Serveur.ServeurRetour;
+import bibliotheque.Bibliotheque;
 
 public class appliServer {
 

@@ -1,4 +1,8 @@
-package Serveur;
+package bibliotheque;
+
+import livre.DejaEmprunteException;
+import livre.DejaReserverException;
+import livre.ReservationException;
 
 public class EmpruntException extends Exception {
 	private String msgUtilisateur;

@@ -1,6 +1,9 @@
-package Serveur;
+package bibliotheque;
 
 import java.util.ArrayList;
+
+import livre.Livre;
+import livre.ReservationException;
 
 public class Bibliotheque {
 	private static ArrayList<Document> documents = new ArrayList<>();

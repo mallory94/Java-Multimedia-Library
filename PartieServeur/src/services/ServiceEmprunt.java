@@ -6,10 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-
-
-import Serveur.Bibliotheque;
-import Serveur.EmpruntException;
+import bibliotheque.Bibliotheque;
+import bibliotheque.EmpruntException;
 public class ServiceEmprunt extends Service implements Runnable {
 	
 	public ServiceEmprunt(Socket socket) {

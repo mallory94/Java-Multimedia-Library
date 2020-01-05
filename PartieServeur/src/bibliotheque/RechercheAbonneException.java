@@ -1,4 +1,4 @@
-package Serveur;
+package bibliotheque;
 
 public class RechercheAbonneException extends Exception{
 	

@@ -1,4 +1,6 @@
-package Serveur;
+package bibliotheque;
+
+import livre.NonEmprunteNonReserverException;
 
 public class RetourException extends Exception {
 	

@@ -1,4 +1,4 @@
-package Serveur;
+package livre;
 
 public class NonEmprunteNonReserverException extends Exception {
 

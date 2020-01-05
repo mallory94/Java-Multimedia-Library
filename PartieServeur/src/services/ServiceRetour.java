@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import Serveur.Bibliotheque;
-import Serveur.RetourException;
+import bibliotheque.Bibliotheque;
+import bibliotheque.RetourException;
 
 public class ServiceRetour extends Service implements Runnable{
 	
