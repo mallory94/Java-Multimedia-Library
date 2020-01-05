@@ -6,13 +6,14 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import Serveur.Mediatheque;
 import bibliotheque.Bibliotheque;
 import bibliotheque.RetourException;
 
 public class ServiceRetour extends Service implements Runnable{
 	
-	public ServiceRetour(Socket socket) {
-		super(socket);
+	public ServiceRetour(Socket socket, Mediatheque mediatheque) {
+		super(socket, mediatheque);
 	}
 	
 	@Override
@@ -32,7 +33,7 @@ public class ServiceRetour extends Service implements Runnable{
 			}
 			if (numeroLu != null) {
 				try {
-					Bibliotheque.retourner(numeroLu.intValue());
+					getMediatheque().retournerDocument(numeroLu.intValue());
 					out.println("votre retour d'emprunt/annulation de réservation"
 							+ " a bien été pris en compte. Merci");
 				} catch (RetourException e) {

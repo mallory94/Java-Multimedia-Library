@@ -5,12 +5,11 @@ import java.net.ServerSocket;
 
 import services.ServiceEmprunt;
 
-public class ServeurEmprunt implements Runnable {
-	private final int PORTemprunt = 2600;
-	private ServerSocket serverSocket;
+public class ServeurEmprunt extends Serveur implements Runnable {
+	private static final int PORTemprunt = 2600;
 
-	public ServeurEmprunt() throws IOException {
-		serverSocket = new ServerSocket(PORTemprunt);
+	public ServeurEmprunt(Mediatheque mediatheque) throws IOException {
+		super(PORTemprunt,mediatheque);
 	}
 
 	
@@ -18,11 +17,11 @@ public class ServeurEmprunt implements Runnable {
 	public void run() {
 		try {
 			while(true) {
-				new Thread(new ServiceEmprunt(serverSocket.accept())).start();
+				new Thread(new ServiceEmprunt(getServerSocket().accept(), getMediatheque())).start();
 				}
 		}
 		catch (IOException e) { 
-			try {this.serverSocket.close();} catch (IOException e1) {}
+			try {getServerSocket().close();} catch (IOException e1) {}
 			System.err.println("Pb sur le port d'écoute :"+e);
 		}
 	}

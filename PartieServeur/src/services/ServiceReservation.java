@@ -6,13 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import bibliotheque.Bibliotheque;
+import Serveur.Mediatheque;
 import bibliotheque.EmpruntException;
 
 public class ServiceReservation extends Service implements Runnable{
 	
-	public ServiceReservation(Socket socket) {
-		super(socket);
+	public ServiceReservation(Socket socket, Mediatheque mediatheque) {
+		super(socket, mediatheque);
 	}
 	
 	@Override
@@ -42,7 +42,7 @@ public class ServiceReservation extends Service implements Runnable{
 				}
 				if (idAboLu != null) {
 					try {
-						Bibliotheque.reserverDocument(numDocLu, idAboLu);
+						getMediatheque().reserverDocument(numDocLu, idAboLu);
 						out.println("votre réservation a bien été prise en compte. Merci");
 						System.out.println("L'abonné dont l'identifiant est " + idAboLu + " vient de réserver"
 								+ " le document numéro " + numDocLu);

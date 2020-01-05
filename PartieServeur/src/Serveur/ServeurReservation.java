@@ -5,12 +5,11 @@ import java.net.ServerSocket;
 
 import services.ServiceReservation;
 
-public class ServeurReservation implements Runnable {
-	private final int PORTreservation= 2500;
-	private ServerSocket serverSocket;
+public class ServeurReservation extends Serveur implements Runnable {
+	private static final int PORTreservation = 2500;
 
-	public ServeurReservation() throws IOException {
-		serverSocket = new ServerSocket(PORTreservation);
+	public ServeurReservation(Mediatheque mediatheque) throws IOException {
+		super(PORTreservation, mediatheque);
 	}
 
 	
@@ -18,11 +17,11 @@ public class ServeurReservation implements Runnable {
 	public void run() {
 		try {
 			while(true) {
-				new Thread(new ServiceReservation(serverSocket.accept())).start();
+				new Thread(new ServiceReservation(getServerSocket().accept(), getMediatheque())).start();
 				}
 		}
 		catch (IOException e) { 
-			try {this.serverSocket.close();} catch (IOException e1) {}
+			try {getServerSocket().close();} catch (IOException e1) {}
 			System.err.println("Pb sur le port d'écoute :"+e);
 		}
 	}

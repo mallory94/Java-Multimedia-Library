@@ -2,6 +2,7 @@ package Appli;
 
 import java.io.IOException;
 
+import Serveur.Mediatheque;
 import Serveur.ServeurEmprunt;
 import Serveur.ServeurReservation;
 import Serveur.ServeurRetour;
@@ -10,15 +11,17 @@ import bibliotheque.Bibliotheque;
 public class appliServer {
 
 	public static void main(String[] args) {
-		Bibliotheque.ajouterAbonne("Jean");
-		Bibliotheque.ajouterAbonne("Claude");
-		Bibliotheque.ajouterLivre("Luc va a la plage");
-		Bibliotheque.ajouterLivre("Comment réussir tous ses DST en 10 étapes");
+		Bibliotheque bibliotheque = new Bibliotheque();
+		bibliotheque.ajouterAbonne("Jean");
+		bibliotheque.ajouterAbonne("Claude");
+		bibliotheque.ajouterLivre("Luc va a la plage");
+		bibliotheque.ajouterLivre("Comment réussir tous ses DST en 10 étapes");
+		Mediatheque mediatheque = bibliotheque;
 		try {
 			
-			ServeurEmprunt serveurEmprunt = new ServeurEmprunt();
-			ServeurReservation serveurReservation = new ServeurReservation();
-			ServeurRetour serveurRetour = new ServeurRetour();
+			ServeurEmprunt serveurEmprunt = new ServeurEmprunt(mediatheque);
+			ServeurReservation serveurReservation = new ServeurReservation(mediatheque);
+			ServeurRetour serveurRetour = new ServeurRetour(mediatheque);
 			serveurEmprunt.lancer();
 			serveurReservation.lancer();
 			serveurRetour.lancer();

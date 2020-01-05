@@ -2,16 +2,21 @@ package bibliotheque;
 
 import java.util.ArrayList;
 
+
+import Serveur.Mediatheque;
 import livre.Livre;
 import livre.ReservationException;
 
-public class Bibliotheque {
-	private static ArrayList<Document> documents = new ArrayList<>();
-	private static ArrayList<Abonne> abonnes = new ArrayList<>();
+public class Bibliotheque implements Mediatheque {
+	private ArrayList<Document> documents;
+	private ArrayList<Abonne> abonnes;
 	
+	public Bibliotheque() {
+		documents = new ArrayList<>();
+		abonnes = new ArrayList<>();
+	}
 	
-	
-	public static Abonne getAbonne(int idAbonne) throws RechercheAbonneException {
+	public Abonne getAbonne(int idAbonne) throws RechercheAbonneException {
 		for(Abonne abonne : abonnes) {
 			if (abonne.getId() == idAbonne) {
 				return abonne;
@@ -20,15 +25,15 @@ public class Bibliotheque {
 		throw new RechercheAbonneException(idAbonne);
 	}
 	
-	public static void ajouterAbonne(String nomAbo) {
+	public void ajouterAbonne(String nomAbo) {
 		abonnes.add(new Abonne(nomAbo));
 	}
 	
-	public static void ajouterLivre(String nom) {
+	public  void ajouterLivre(String nom) {
 		documents.add(new Livre(nom));
 	}
 	
-	public static Document getDocuments(int numero) throws RechercheDocumentException {
+	public  Document getDocuments(int numero) throws RechercheDocumentException {
 		for(Document doc : documents) {
 			if (doc.numero() == numero) {
 				return doc;
@@ -37,7 +42,7 @@ public class Bibliotheque {
 		throw new RechercheDocumentException(numero);
 	}
 	
-	public static void reserverDocument(int idDoc, int idAbo) throws EmpruntException {
+	public void reserverDocument(int idDoc, int idAbo) throws EmpruntException {
 		try {
 			getDocuments(idDoc).reserver(getAbonne(idAbo));
 		}
@@ -48,7 +53,7 @@ public class Bibliotheque {
 		}
 	}
 	
-	public static void emprunter(int idDoc, int idAbo) throws EmpruntException {
+	public void emprunterDocument(int idDoc, int idAbo) throws EmpruntException {
 		try {
 			getDocuments(idDoc).emprunter(getAbonne(idAbo));
 		}
@@ -59,7 +64,7 @@ public class Bibliotheque {
 		}
 	}
 	
-	public static void retourner(int idDoc) throws RetourException {
+	public void retournerDocument(int idDoc) throws RetourException {
 		try {
 			getDocuments(idDoc).retour();
 		} catch (RechercheDocumentException e) {
@@ -67,4 +72,7 @@ public class Bibliotheque {
 		}
 	}
 	
+	public Mediatheque getReference() {
+		return((Mediatheque) this);
+	}
 }

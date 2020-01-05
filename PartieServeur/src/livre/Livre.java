@@ -44,6 +44,7 @@ public class Livre implements Document {
 				throw new EmpruntException(new DejaReserverException(ab.getNom()),
 											new ReservationException());
 			}
+			this.notifyAll();
 		}
 		
 	}
@@ -52,7 +53,7 @@ public class Livre implements Document {
 	public void emprunter(Abonne ab) throws EmpruntException {
 		synchronized (this) {
 //			try {
-//				if (numero == 0) {
+//				if (ab.getId() == 0) {
 //					System.out.println("attends");
 //					Thread.sleep(1000*30);
 //					
@@ -79,6 +80,7 @@ public class Livre implements Document {
 			} else {
 				throw new EmpruntException(new DejaEmprunteException(ab.getNom()));
 			}
+			this.notifyAll();
 		}
 	}
 
@@ -96,6 +98,7 @@ public class Livre implements Document {
 						+ "l'abonné l'ayant réservé a procédé l'annulation de la réservation");
 			}
 			this.isEmprunter = false;
+			this.notifyAll();
 		}
 	}
 	
@@ -106,6 +109,7 @@ public class Livre implements Document {
 				minuteur.annuler();
 				minuteur = null;
 			}
+			this.notifyAll();
 		}
 	}
 	

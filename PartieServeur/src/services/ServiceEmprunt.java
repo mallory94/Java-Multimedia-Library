@@ -6,12 +6,13 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import bibliotheque.Bibliotheque;
+import Serveur.Mediatheque;
+
 import bibliotheque.EmpruntException;
 public class ServiceEmprunt extends Service implements Runnable {
 	
-	public ServiceEmprunt(Socket socket) {
-		super(socket);
+	public ServiceEmprunt(Socket socket, Mediatheque mediatheque) {
+		super(socket, mediatheque);
 	}
 	
 	public void run() {
@@ -42,6 +43,8 @@ public class ServiceEmprunt extends Service implements Runnable {
 				if (idAboLu != null) {
 					try {
 						enregistrerEmprunt(numDocLu, idAboLu);
+						System.out.println("L'abonné possèdant l'identifiant " + idAboLu + " vient "
+								+ "d'emprunter le document numéro " + numDocLu);
 						out.println("votre emprunt a bien été pris en compte. Merci");
 					} catch (EmpruntException e) {
 						out.println(e.getMsgUtilisateur());
@@ -76,9 +79,8 @@ public class ServiceEmprunt extends Service implements Runnable {
 	
 	public void enregistrerEmprunt(int numeroDocument, int idAbonne) throws EmpruntException {
 			try {
-				Bibliotheque.emprunter(numeroDocument, idAbonne);
+				this.getMediatheque().emprunterDocument(numeroDocument, idAbonne);
 			} catch (EmpruntException e) {
-				
 				throw e;
 			}
 	}

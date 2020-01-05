@@ -5,12 +5,11 @@ import java.net.ServerSocket;
 
 import services.ServiceRetour;
 
-public class ServeurRetour implements Runnable {
-	private final int PORTretours = 2700;
-	private ServerSocket serverSocket;
+public class ServeurRetour extends Serveur implements Runnable {
+	private static final int PORTretour = 2700;
 
-	public ServeurRetour() throws IOException {
-		serverSocket = new ServerSocket(PORTretours);
+	public ServeurRetour(Mediatheque mediatheque) throws IOException {
+		super(PORTretour,mediatheque);
 	}
 
 	
@@ -18,11 +17,11 @@ public class ServeurRetour implements Runnable {
 	public void run() {
 		try {
 			while(true) {
-				new Thread(new ServiceRetour(serverSocket.accept())).start();
+				new Thread(new ServiceRetour(getServerSocket().accept(), getMediatheque())).start();
 				}
 		}
 		catch (IOException e) { 
-			try {this.serverSocket.close();} catch (IOException e1) {}
+			try {getServerSocket().close();} catch (IOException e1) {}
 			System.err.println("Pb sur le port d'écoute :"+e);
 		}
 	}
