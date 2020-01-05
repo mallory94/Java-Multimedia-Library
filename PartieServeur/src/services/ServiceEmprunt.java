@@ -7,49 +7,82 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 
-import Serveur.Abonne;
+
 import Serveur.Bibliotheque;
 import Serveur.EmpruntException;
-
 public class ServiceEmprunt extends Service implements Runnable {
 	
 	public ServiceEmprunt(Socket socket) {
 		super(socket);
 	}
-
+	
 	public void run() {
+
 		System.out.println("*********Connexion "+this.getNumero()+" démarrée");
 		try {
-			BufferedReader in = new BufferedReader (new InputStreamReader(this.getSocket().getInputStream()));
+			BufferedReader in = new BufferedReader(
+					new InputStreamReader(this.getSocket().getInputStream())
+					);
 			PrintWriter out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
 			out.println("Tapez le numéro d'un livre a Emprunter :");
 			String reponse = in.readLine();
-			Integer numeroLu = null;
+			Integer numDocLu = null;
 			try {
-				 numeroLu = Integer.valueOf(reponse);
+				 numDocLu = Integer.valueOf(reponse);
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			}
-			if (numeroLu != null) {
+			if (numDocLu != null) {
 				out.println("Donnez votre identifiant.");
-				//enregistrerEmprunt(numeroLu,); // c'est casser
+				String reponse2 = in.readLine();
+				Integer idAboLu = null;
+				try {
+					 idAboLu = Integer.valueOf(reponse2);
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+				if (idAboLu != null) {
+					try {
+						enregistrerEmprunt(numDocLu, idAboLu);
+						out.println("votre emprunt a bien été pris en compte. Merci");
+					} catch (EmpruntException e) {
+						out.println(e.getMsgUtilisateur());
+						e.printStackTrace();
+					}
+					
+				}
 			}
 			
 			
 		}
-		catch (IOException e) {
-		}
 		//catch l'Emprunt exception
+		catch (IOException e) {
+			e.printStackTrace();
+		}
+		
 		
 		System.out.println("*********Connexion "+this.getNumero()+" terminée");
-		try {this.getSocket().close();} catch (IOException e2) {}
+		try {
+			this.getSocket().close();
+		} 
+		catch (IOException e2) {
+			e2.printStackTrace();
+		}
+		
 	}
 	
 	protected void finalize() throws Throwable {
 		this.getSocket().close(); 
 	}
 	
-	public void enregistrerEmprunt(int numeroDocument, Abonne abonne) throws EmpruntException {
-		Bibliotheque.getDocuments(numeroDocument).emprunter(abonne);
+	
+	public void enregistrerEmprunt(int numeroDocument, int idAbonne) throws EmpruntException {
+			try {
+				Bibliotheque.emprunter(numeroDocument, idAbonne);
+			} catch (EmpruntException e) {
+				
+				throw e;
+			}
 	}
+	
 }

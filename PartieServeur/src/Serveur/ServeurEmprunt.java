@@ -6,12 +6,10 @@ import java.net.ServerSocket;
 import services.ServiceEmprunt;
 
 public class ServeurEmprunt implements Runnable {
-	//private final int PORTreservation= 2500;
 	private final int PORTemprunt = 2600;
-	//private final int PORTretours = 2700;
 	private ServerSocket serverSocket;
 
-	ServeurEmprunt() throws IOException {
+	public ServeurEmprunt() throws IOException {
 		serverSocket = new ServerSocket(PORTemprunt);
 	}
 
@@ -27,6 +25,10 @@ public class ServeurEmprunt implements Runnable {
 			try {this.serverSocket.close();} catch (IOException e1) {}
 			System.err.println("Pb sur le port d'écoute :"+e);
 		}
+	}
+	
+	public void lancer() {
+		new Thread(this).start();
 	}
 	
 	

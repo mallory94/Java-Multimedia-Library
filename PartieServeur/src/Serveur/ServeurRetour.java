@@ -6,12 +6,10 @@ import java.net.ServerSocket;
 import services.ServiceRetour;
 
 public class ServeurRetour implements Runnable {
-	//private final int PORTreservation= 2500;
-	//private final int PORTemprunt = 2600;
 	private final int PORTretours = 2700;
 	private ServerSocket serverSocket;
 
-	ServeurRetour() throws IOException {
+	public ServeurRetour() throws IOException {
 		serverSocket = new ServerSocket(PORTretours);
 	}
 
@@ -29,6 +27,9 @@ public class ServeurRetour implements Runnable {
 		}
 	}
 	
+	public void lancer() {
+		new Thread(this).start();
+	}
 	
 }
 

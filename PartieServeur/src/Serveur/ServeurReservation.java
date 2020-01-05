@@ -7,11 +7,9 @@ import services.ServiceReservation;
 
 public class ServeurReservation implements Runnable {
 	private final int PORTreservation= 2500;
-	//private final int PORTemprunt = 2600;
-	//private final int PORTretours = 2700;
 	private ServerSocket serverSocket;
 
-	ServeurReservation() throws IOException {
+	public ServeurReservation() throws IOException {
 		serverSocket = new ServerSocket(PORTreservation);
 	}
 
@@ -29,5 +27,8 @@ public class ServeurReservation implements Runnable {
 		}
 	}
 	
+	public void lancer() {
+		new Thread(this).start();
+	}
 	
 }
