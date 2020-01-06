@@ -12,14 +12,14 @@ public class DocumentEmpruntable implements Document {
 	private int numero;
 	private String nom;
 	private Abonne abonneReserver;
-	private boolean isEmprunter;
+	private boolean estEmprunte;
 	
 	public DocumentEmpruntable(String nom) {
 		this.numero = cpt;
 		cpt++;
 		this.nom = nom;
 		this.abonneReserver = null;
-		this.isEmprunter = false;
+		this.estEmprunte = false;
 	}
 	
 	
@@ -30,7 +30,7 @@ public class DocumentEmpruntable implements Document {
 	public void reserver(Abonne ab) throws EmpruntException {
 		synchronized (this) {
 			if (this.abonneReserver == null) {
-				if (this.isEmprunter == false) {
+				if (this.estEmprunte == false) {
 					this.abonneReserver = ab;
 					minuteur = new Minuteur(this);
 				}
@@ -59,9 +59,9 @@ public class DocumentEmpruntable implements Document {
 //			} catch (InterruptedException e) {
 //				e.printStackTrace();
 //			}
-			if ( isEmprunter == false ) {
+			if ( estEmprunte == false ) {
 				if 	( ab == this.abonneReserver || this.abonneReserver == null) {
-					this.isEmprunter = true;
+					this.estEmprunte = true;
 					this.abonneReserver = null;
 					/* vérifie si le document a été réservé. Annule le minuteur de la durée de réservation
 					*	si c'est le cas
@@ -88,7 +88,7 @@ public class DocumentEmpruntable implements Document {
 	
 	public void retour() throws RetourException {
 		synchronized (this) {
-			if (this.isEmprunter == false && this.abonneReserver == null) {
+			if (this.estEmprunte == false && this.abonneReserver == null) {
 				throw new RetourException(new NonEmprunteNonReserverException(this.numero));
 			}
 			else if (this.abonneReserver != null) {
@@ -98,14 +98,14 @@ public class DocumentEmpruntable implements Document {
 				System.out.println("La réservation du document \"" + nom + "\" s'est vue annulée parce que "
 						+ "l'abonné l'ayant réservé a procédé l'annulation de la réservation");
 			}
-			this.isEmprunter = false;
+			this.estEmprunte = false;
 			this.notifyAll();
 		}
 	}
 	
 	public void supprimerReservation() {
 		synchronized (this) {
-			if (this.abonneReserver != null && isEmprunter == false) {
+			if (this.abonneReserver != null && estEmprunte == false) {
 				this.abonneReserver = null;
 				minuteur.annuler();
 				minuteur = null;
@@ -116,5 +116,9 @@ public class DocumentEmpruntable implements Document {
 	
 	public String getTitre() {
 		return nom;
+	}
+	
+	public boolean estEmprunte() {
+		return(estEmprunte);
 	}
 }
