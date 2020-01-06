@@ -1,6 +1,6 @@
 package bibliotheque;
 
-import livre.NonEmprunteNonReserverException;
+import documentEmpruntable.NonEmprunteNonReserverException;
 
 public class RetourException extends Exception {
 	

@@ -23,7 +23,7 @@ public class ServiceRetour extends Service implements Runnable{
 					new InputStreamReader(this.getSocket().getInputStream())
 					);
 			PrintWriter out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
-			out.println("Entrez le numero du livre à retourner :");
+			out.println("Entrez le numero du document à retourner :");
 			String reponse = in.readLine();
 			Integer numeroLu = null;
 			try {

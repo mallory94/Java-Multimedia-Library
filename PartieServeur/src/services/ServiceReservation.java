@@ -23,7 +23,7 @@ public class ServiceReservation extends Service implements Runnable{
 					new InputStreamReader(this.getSocket().getInputStream())
 					);
 			PrintWriter out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
-			out.println("Tapez le numéro d'un livre à réserver :");
+			out.println("Tapez le numéro d'un document à réserver :");
 			String reponse = in.readLine();
 			Integer numDocLu = null;
 			try {

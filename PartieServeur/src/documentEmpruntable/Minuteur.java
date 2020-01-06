@@ -1,21 +1,21 @@
-package livre;
+package documentEmpruntable;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 public class Minuteur {
-	private Livre livre;
+	private DocumentEmpruntable document;
 	private Timer timer;
-	public Minuteur(Livre livreReserve) {
-		this.livre = livreReserve;
+	public Minuteur(DocumentEmpruntable documentReserve) {
+		this.document = documentReserve;
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
 			
 			@Override
 			public void run() {
 				timer.cancel();
-				livre.supprimerReservation();
-				System.out.println("La réservation du livre \"" + livre.getTitre() + "\" s'est vue annulée"
+				document.supprimerReservation();
+				System.out.println("La réservation du document \"" + document.getTitre() + "\" s'est vue annulée"
 						+ " car l'abonné ayant réservé n'a pas procédé à l'emprunt avant"
 						+ " la fin de la durée de la réservation." );
 			}

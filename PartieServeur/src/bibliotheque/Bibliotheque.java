@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 
 import Serveur.Mediatheque;
-import livre.Livre;
-import livre.ReservationException;
+import documentEmpruntable.DocumentEmpruntable;
+import documentEmpruntable.ReservationException;
 
 public class Bibliotheque implements Mediatheque {
 	private ArrayList<Document> documents;
@@ -25,17 +25,17 @@ public class Bibliotheque implements Mediatheque {
 		throw new RechercheAbonneException(idAbonne);
 	}
 	
-	public void ajouterAbonne(String nomAbo) {
-		abonnes.add(new Abonne(nomAbo));
+	public void ajouterAbonne(String nomAbo, String dateNaissance) {
+		abonnes.add(new Abonne(nomAbo, dateNaissance));
 	}
 	
-	public  void ajouterLivre(String nom) {
-		documents.add(new Livre(nom));
+	public  void ajouterDocumentEmpruntable(String nom) {
+		documents.add(new DocumentEmpruntable(nom));
 	}
 	
 	public  Document getDocuments(int numero) throws RechercheDocumentException {
 		for(Document doc : documents) {
-			if (doc.numero() == numero) {
+			if (doc.getNumero() == numero) {
 				return doc;
 			}
 		}

@@ -1,8 +1,9 @@
 package bibliotheque;
 
-import livre.DejaEmprunteException;
-import livre.DejaReserverException;
-import livre.ReservationException;
+import documentEmpruntable.DejaEmprunteException;
+import documentEmpruntable.DejaReserverException;
+import documentEmpruntable.ReservationException;
+import dvd.LimitationAgeException;
 
 public class EmpruntException extends Exception {
 	private String msgUtilisateur;
@@ -59,6 +60,28 @@ public class EmpruntException extends Exception {
 				+ " ( à savoir : " + e2.getnumAbo() +  ") ne correspond à "
 				+ "aucun abonne connu de la bibliotheque");
 		renseigneAbonneInconnu();
+	}
+
+	public EmpruntException(LimitationAgeException limitationAgeException, int idAbo, int limitationAge) {
+		super("Erreur d'emprunt : L'abonné possédant l'identifiant " + idAbo + " a tenté "
+				+ " d'emprunté un document réservé aux plus de "  + limitationAge 
+				+ " ans sans avoir l'âge requis.");
+		renseigneLimitationAge(limitationAge);
+	}
+	
+	
+
+	public EmpruntException(LimitationAgeException limitationAgeException, 
+			ReservationException reservationException, int idAbo, int limitationAge) {
+		super("Erreur de réservation. L'abonné possédant l'identifiant " + idAbo + " a tenté "
+				+ " de réserver un document réservé aux plus de " + limitationAge + 
+				" ans sans avoir l'âge requis.");
+		renseigneLimitationAge(limitationAge);
+	}
+
+	private void renseigneLimitationAge(int limitationAge) {
+		msgUtilisateur = "Erreur d'emprunt/réservation : Vous n'avez pas l'âge requis pour accéder"
+				+ " à ce document. Il est réservé aux plus de " + limitationAge + " ans.";
 	}
 
 	public String getMsgUtilisateur() {

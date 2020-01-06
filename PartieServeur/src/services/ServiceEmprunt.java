@@ -23,7 +23,7 @@ public class ServiceEmprunt extends Service implements Runnable {
 					new InputStreamReader(this.getSocket().getInputStream())
 					);
 			PrintWriter out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
-			out.println("Tapez le numéro d'un livre a Emprunter :");
+			out.println("Tapez le numéro d'un document a Emprunter :");
 			String reponse = in.readLine();
 			Integer numDocLu = null;
 			try {

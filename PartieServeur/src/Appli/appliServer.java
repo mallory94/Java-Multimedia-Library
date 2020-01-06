@@ -12,10 +12,11 @@ public class appliServer {
 
 	public static void main(String[] args) {
 		Bibliotheque bibliotheque = new Bibliotheque();
-		bibliotheque.ajouterAbonne("Jean");
-		bibliotheque.ajouterAbonne("Claude");
-		bibliotheque.ajouterLivre("Luc va a la plage");
-		bibliotheque.ajouterLivre("Comment réussir tous ses DST en 10 étapes");
+		//l'age est à renseigné en format ANGLAIS !   Mois/Jour/Année
+		bibliotheque.ajouterAbonne("Jean", "01/06/1999");
+		bibliotheque.ajouterAbonne("Claude", "02/01/1999");
+		bibliotheque.ajouterDocumentEmpruntable("Luc va a la plage");
+		bibliotheque.ajouterDocumentEmpruntable("Comment réussir tous ses DST en 10 étapes");
 		Mediatheque mediatheque = bibliotheque;
 		try {
 			

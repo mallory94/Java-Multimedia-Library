@@ -1,4 +1,4 @@
-package livre;
+package documentEmpruntable;
 
 public class NonEmprunteNonReserverException extends Exception {
 
