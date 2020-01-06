@@ -17,7 +17,9 @@ public abstract class Service {
 	private final Socket client;
 	
 	public Service(Socket socket, Mediatheque mediatheque) {
-		this.numero = cpt++;
+		synchronized (this.getClass()) {
+			this.numero = cpt++;
+		}
 		this.client = socket;
 		this.mediatheque = mediatheque;
 	}
@@ -56,7 +58,6 @@ public abstract class Service {
 		catch (IOException e) {
 			System.out.println("Probleme dans la lecture de la socket");
 		}
-		
 		
 		return (Integer) null; //empeche l'affichage d'une erreur de return
 	}

@@ -49,6 +49,9 @@ public class ServiceReservation extends Service implements Runnable{
 					} catch (EmpruntException e) {
 						out.println(e.getMsgUtilisateur());
 						e.printStackTrace();
+						if (e.isDejaReserverOuEmprunterException()) {
+							
+						}
 					}
 				}
 			}

@@ -7,6 +7,7 @@ import dvd.LimitationAgeException;
 
 public class EmpruntException extends Exception {
 	private String msgUtilisateur;
+	private boolean dejaReserverOuEmprunter = false;
 	
 	private static final long serialVersionUID = -5770254047220744546L;
 
@@ -14,24 +15,28 @@ public class EmpruntException extends Exception {
 		super("Un emprunt s'est vu annulé car le document que l'utilisateur "
 				+ e.getNomAboVoulantReserver() + " veut emprunter est déjà réservé");
 		renseigneReservePourEmprunt();
+		dejaReserverOuEmprunter = true;
 	}
 	
 	public EmpruntException(DejaReserverException e, ReservationException e2) {
 		super("Une réservation s'est vue annulée car le document que l'utilisateur "
 				+ e.getNomAboVoulantReserver() + " veut réserver est déjà réservé");
 		renseigneReservePourReservation();
+		dejaReserverOuEmprunter = true;
 	}
 	
 	public EmpruntException(DejaEmprunteException e) {
 		super("Un emprunt s'est vu annulé car le document que l'utilisateur "
 				+ " veut emprunter est déjà emprunté");
 		renseigneEmpruntePourEmprunt();
+		dejaReserverOuEmprunter = true;
 	}
 
 	public EmpruntException(DejaEmprunteException e1, ReservationException e2) {
 		super("Une réservation s'est vue annulée car le document que l'utilisateur "
 				+ " veut réserver est déjà emprunté");
 		renseigneEmpruntePourReservation();
+		dejaReserverOuEmprunter = true;
 	}
 	
 	public EmpruntException(RechercheDocumentException e) {
@@ -120,5 +125,10 @@ public class EmpruntException extends Exception {
 				+ "abonné renseigné ne correspond à aucun abonné connu de la "
 				+ "bibliothèque.";
 	}
+	
+	public boolean isDejaReserverOuEmprunterException(){
+		return dejaReserverOuEmprunter;
+	}
+	
 }
 

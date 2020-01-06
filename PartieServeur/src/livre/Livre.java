@@ -11,6 +11,17 @@ public class Livre extends DocumentEmpruntable{
 		super(nom);
 	}
 	
+	
+	@Override
+	public void reserver(Abonne ab) throws EmpruntException {
+		try {
+			super.reserver(ab);
+		}
+		catch (EmpruntException e) {
+			
+		}
+	}
+	
 	@Override
 	public void retour() throws RetourException {
 		
