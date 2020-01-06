@@ -2,11 +2,11 @@ package Appli;
 
 import java.io.IOException;
 
-import Serveur.Mediatheque;
-import Serveur.ServeurEmprunt;
-import Serveur.ServeurReservation;
-import Serveur.ServeurRetour;
 import bibliotheque.Bibliotheque;
+import serveur.Mediatheque;
+import serveur.ServeurEmprunt;
+import serveur.ServeurReservation;
+import serveur.ServeurRetour;
 
 public class appliServer {
 

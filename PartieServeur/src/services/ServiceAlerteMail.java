@@ -2,7 +2,7 @@ package services;
 
 import java.net.Socket;
 
-import Serveur.Mediatheque;
+import serveur.Mediatheque;
 
 public class ServiceAlerteMail extends Service {
 

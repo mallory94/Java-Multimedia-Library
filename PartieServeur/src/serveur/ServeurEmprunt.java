@@ -1,15 +1,15 @@
-package Serveur;
+package serveur;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 
-import services.ServiceRetour;
+import services.ServiceEmprunt;
 
-public class ServeurRetour extends Serveur implements Runnable {
-	private static final int PORTretour = 2700;
+public class ServeurEmprunt extends Serveur implements Runnable {
+	private static final int PORTemprunt = 2600;
 
-	public ServeurRetour(Mediatheque mediatheque) throws IOException {
-		super(PORTretour,mediatheque);
+	public ServeurEmprunt(Mediatheque mediatheque) throws IOException {
+		super(PORTemprunt,mediatheque);
 	}
 
 	
@@ -17,7 +17,7 @@ public class ServeurRetour extends Serveur implements Runnable {
 	public void run() {
 		try {
 			while(true) {
-				new Thread(new ServiceRetour(getServerSocket().accept(), getMediatheque())).start();
+				new Thread(new ServiceEmprunt(getServerSocket().accept(), getMediatheque())).start();
 				}
 		}
 		catch (IOException e) { 
@@ -30,5 +30,5 @@ public class ServeurRetour extends Serveur implements Runnable {
 		new Thread(this).start();
 	}
 	
+	
 }
-

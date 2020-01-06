@@ -2,10 +2,9 @@ package bibliotheque;
 
 import java.util.ArrayList;
 
-
-import Serveur.Mediatheque;
 import documentEmpruntable.DocumentEmpruntable;
 import documentEmpruntable.ReservationException;
+import serveur.Mediatheque;
 
 public class Bibliotheque implements Mediatheque {
 	private ArrayList<Document> documents;

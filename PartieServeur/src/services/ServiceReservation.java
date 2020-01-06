@@ -6,8 +6,8 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import Serveur.Mediatheque;
 import bibliotheque.EmpruntException;
+import serveur.Mediatheque;
 
 public class ServiceReservation extends Service implements Runnable{
 	

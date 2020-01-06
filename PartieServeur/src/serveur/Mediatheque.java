@@ -1,4 +1,4 @@
-package Serveur;
+package serveur;
 
 import bibliotheque.EmpruntException;
 import bibliotheque.RetourException;

@@ -7,7 +7,7 @@ import java.net.Socket;
 
 import javax.imageio.IIOException;
 
-import Serveur.Mediatheque;
+import serveur.Mediatheque;
 
 public abstract class Service {
 	private static int cpt = 1;
