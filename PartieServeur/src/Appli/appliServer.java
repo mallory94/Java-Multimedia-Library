@@ -19,7 +19,6 @@ public class appliServer {
 		bibliotheque.ajouterDocumentEmpruntable("Comment réussir tous ses DST en 10 étapes");
 		Mediatheque mediatheque = bibliotheque;
 		try {
-			
 			ServeurEmprunt serveurEmprunt = new ServeurEmprunt(mediatheque);
 			ServeurReservation serveurReservation = new ServeurReservation(mediatheque);
 			ServeurRetour serveurRetour = new ServeurRetour(mediatheque);

@@ -47,7 +47,7 @@ public abstract class Service {
 			String reponse = in.readLine();
 			try {
 				 numeroLu = Integer.valueOf(reponse);
-			} 
+			}
 			catch (NumberFormatException e) {
 				e.printStackTrace();
 			}

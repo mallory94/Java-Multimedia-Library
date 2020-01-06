@@ -126,7 +126,7 @@ public class EmpruntException extends Exception {
 				+ "bibliothèque.";
 	}
 	
-	public boolean isDejaReserverOuEmprunterException(){
+	public boolean estDejaReserverOuEmprunterException(){
 		return dejaReserverOuEmprunter;
 	}
 	
