@@ -10,7 +10,6 @@ public class Abonne {
 	private Date dateNaissance;
 	private int id;
 	private String nom;
-	private boolean estInterditEmprunt; //renseigne si l'abonne est interdit d'emprunt ou non
 	
 	public Abonne() {
 		id = cpt++;

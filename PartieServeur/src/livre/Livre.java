@@ -1,15 +1,17 @@
 package livre;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 import bibliotheque.Abonne;
 import bibliotheque.EmpruntException;
 import bibliotheque.RetourException;
 import documentEmpruntable.DocumentEmpruntable;
+import minuteur.MinuteurInterdictionDemprunt;
 
 public class Livre extends DocumentEmpruntable{
-	private static ArrayList<Abonne> abonnesInterditsDemprunt;
+	private static HashMap<Abonne, MinuteurInterdictionDemprunt> abonnesInterditsDemprunt;
 	private EtatDegradation etatDegradation;
 	private Abonne emprunteur;
 	
@@ -21,12 +23,14 @@ public class Livre extends DocumentEmpruntable{
 	
 	@Override
 	public void reserver(Abonne ab) throws EmpruntException {
-		try {
+		
+		if (!ParamAboEstInterdit(ab)) {
 			super.reserver(ab);
 		}
-		catch (EmpruntException e) {
-			
+		else {
+			throw 
 		}
+		
 	}
 	
 	@Override
@@ -68,9 +72,10 @@ public class Livre extends DocumentEmpruntable{
 	}
 	
 	
-	public void sanctionnerEmprunteur() {
+	public void sanctionnerEmprunteur(String motif) {
+		int sanctionStandarde = 
 		synchronized (abonnesInterditsDemprunt) {
-			abonnesInterditsDemprunt.add(getEmprunteur());
+			abonnesInterditsDemprunt.put(getEmprunteur(), new MinuteurInterdictionDemprunt(getEmprunteur(), motif, ));
 			abonnesInterditsDemprunt.notifyAll();
 		}
 	}
@@ -86,7 +91,7 @@ public class Livre extends DocumentEmpruntable{
 	public static boolean ParamAboEstInterdit(Abonne ab) {
 		boolean estInterdit = false;
 		synchronized (abonnesInterditsDemprunt) {
-			if (abonnesInterditsDemprunt.contains(ab)) {
+			if (abonnesInterditsDemprunt.containsKey(ab)) {
 				estInterdit = true;
 			}
 			abonnesInterditsDemprunt.notifyAll();
