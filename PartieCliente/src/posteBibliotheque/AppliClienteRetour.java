@@ -22,7 +22,12 @@ public class AppliClienteRetour {
 			System.out.println(socketIn.readLine());
 			socketOut.println(sc.nextLine());
 
+			
 			System.out.println(socketIn.readLine());
+			System.out.println(socketIn.readLine());
+			System.out.println(socketIn.readLine());
+			
+			
 			try {
 				maSocket.close();
 			} catch (Exception e2) {

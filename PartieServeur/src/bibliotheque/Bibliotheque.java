@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import documentEmpruntable.DocumentEmpruntable;
 import documentEmpruntable.ReservationException;
+import empruntAvecSanction.DocumentAvecEmpruntSanctionnable;
 import serveur.Mediatheque;
 
 public class Bibliotheque implements Mediatheque {
@@ -28,11 +29,11 @@ public class Bibliotheque implements Mediatheque {
 		abonnes.add(new Abonne(nomAbo, dateNaissance));
 	}
 	
-	public  void ajouterDocumentEmpruntable(String nom) {
-		documents.add(new DocumentEmpruntable(nom));
+	public  void ajouterDocument(Document doc) {
+		documents.add(doc);
 	}
 	
-	public  Document getDocuments(int numero) throws RechercheDocumentException {
+	public  Document getDocument(int numero) throws RechercheDocumentException {
 		for(Document doc : documents) {
 			if (doc.getNumero() == numero) {
 				return doc;
@@ -43,7 +44,7 @@ public class Bibliotheque implements Mediatheque {
 	
 	public void reserverDocument(int idDoc, int idAbo) throws EmpruntException {
 		try {
-			getDocuments(idDoc).reserver(getAbonne(idAbo));
+			getDocument(idDoc).reserver(getAbonne(idAbo));
 		}
 		catch (RechercheDocumentException e) {
 			throw new EmpruntException(e, new ReservationException());
@@ -54,7 +55,7 @@ public class Bibliotheque implements Mediatheque {
 	
 	public void emprunterDocument(int idDoc, int idAbo) throws EmpruntException {
 		try {
-			getDocuments(idDoc).emprunter(getAbonne(idAbo));
+			getDocument(idDoc).emprunter(getAbonne(idAbo));
 		}
 		catch (RechercheAbonneException e) {
 			throw new EmpruntException(e);
@@ -65,13 +66,14 @@ public class Bibliotheque implements Mediatheque {
 	
 	public void retournerDocument(int idDoc) throws RetourException {
 		try {
-			getDocuments(idDoc).retour();
+			getDocument(idDoc).retour();
 		} catch (RechercheDocumentException e) {
 			throw new RetourException(e);
 		}
 	}
-	
+
 	public Mediatheque getReference() {
 		return((Mediatheque) this);
 	}
+
 }

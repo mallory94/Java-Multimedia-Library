@@ -1,4 +1,4 @@
-package livre;
+package empruntAvecSanction;
 
 public enum EtatDegradation {
 	DEGRADE("état dégradé"),

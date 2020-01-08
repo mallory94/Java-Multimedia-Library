@@ -1,6 +1,7 @@
 package bibliotheque;
 
 import documentEmpruntable.NonEmprunteNonReserverException;
+import empruntAvecSanction.InterditDempruntException;
 
 public class RetourException extends Exception {
 	
@@ -22,6 +23,11 @@ public class RetourException extends Exception {
 				+ " à aucun document connu de la bibliotheque");
 		msgUtilisateur = "Erreur de retour : Le numéro de document que vous avez renseigné ne"
 				+ " correspond à aucun document connu de la bibliothèque.";
+	}
+	
+	public RetourException(InterditDempruntException e) {
+		super(e.getMessage());
+		msgUtilisateur = e.getMsgUtilisateur();
 	}
 	
 	public String getMsgUtilisateur() {

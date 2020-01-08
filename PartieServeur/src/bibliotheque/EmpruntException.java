@@ -4,6 +4,7 @@ import documentEmpruntable.DejaEmprunteException;
 import documentEmpruntable.DejaReserverException;
 import documentEmpruntable.ReservationException;
 import dvd.LimitationAgeException;
+import empruntAvecSanction.InterditDempruntException;
 
 public class EmpruntException extends Exception {
 	private String msgUtilisateur;
@@ -69,8 +70,8 @@ public class EmpruntException extends Exception {
 
 	public EmpruntException(LimitationAgeException limitationAgeException, int idAbo, int limitationAge) {
 		super("Erreur d'emprunt : L'abonné possédant l'identifiant " + idAbo + " a tenté "
-				+ " d'emprunté un document réservé aux plus de "  + limitationAge 
-				+ " ans sans avoir l'âge requis.");
+				+ " d'emprunté un document réservé aux "  + limitationAge 
+				+ " ans et + sans avoir l'âge minimum requis.");
 		renseigneLimitationAge(limitationAge);
 	}
 	
@@ -83,44 +84,49 @@ public class EmpruntException extends Exception {
 				" ans sans avoir l'âge requis.");
 		renseigneLimitationAge(limitationAge);
 	}
+	
+	public EmpruntException(InterditDempruntException e) {
+		super(e.getMessage());
+		msgUtilisateur = e.getMsgUtilisateur();
+	}
 
 	private void renseigneLimitationAge(int limitationAge) {
 		msgUtilisateur = "Erreur d'emprunt/réservation : Vous n'avez pas l'âge requis pour accéder"
-				+ " à ce document. Il est réservé aux plus de " + limitationAge + " ans.";
+				+ " à ce document. Il est réservé aux " + limitationAge + " ans et +.";
 	}
 
 	public String getMsgUtilisateur() {
 		return msgUtilisateur;
 	}
 	
-	public void renseigneReservePourReservation() {
+	private void renseigneReservePourReservation() {
 		msgUtilisateur = "Erreur d'emprunt : le document que vous souhaitez réserver "
 				+ "est réservé.";
 	}
 	
-	public void renseigneEmpruntePourReservation() {
+	private void renseigneEmpruntePourReservation() {
 		msgUtilisateur = "Erreur d'emprunt : le document que vous souhaitez réserver "
 				+ "est en cours d'emprunt.";
 	}
 	
-	public void renseigneReservePourEmprunt() {
+	private void renseigneReservePourEmprunt() {
 		msgUtilisateur = "Erreur d'emprunt : le document que vous souhaitez emprunter "
 				+ "est réservé.";
 	}
 	
-	public void renseigneEmpruntePourEmprunt() {
+	private void renseigneEmpruntePourEmprunt() {
 		msgUtilisateur = "Erreur d'emprunt : le document que vous souhaitez emprunter "
 				+ "est en cours d'emprunt.";
 	}
 	
 	
-	public void renseigneDocumentInconnu() {
+	private void renseigneDocumentInconnu() {
 		msgUtilisateur = "Votre demande ne peut être satisfaite car le numero de "
 				+ "document renseigné ne correspond à aucun document connu de la "
 				+ "bibliothèque.";
 	}
 	
-	public void renseigneAbonneInconnu() {
+	private void renseigneAbonneInconnu() {
 		msgUtilisateur = "Votre demande ne peut être satisfaite car le numero d'"
 				+ "abonné renseigné ne correspond à aucun abonné connu de la "
 				+ "bibliothèque.";

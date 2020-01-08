@@ -6,7 +6,6 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
-import bibliotheque.Bibliotheque;
 import bibliotheque.RetourException;
 import serveur.Mediatheque;
 

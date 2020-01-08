@@ -1,11 +1,12 @@
 package dvd;
 
 import bibliotheque.Abonne;
+import bibliotheque.Document;
 import bibliotheque.EmpruntException;
-import documentEmpruntable.DocumentEmpruntable;
 import documentEmpruntable.ReservationException;
+import empruntAvecSanction.DocumentAvecEmpruntSanctionnable;
 
-public class Dvd extends DocumentEmpruntable {
+public class Dvd extends DocumentAvecEmpruntSanctionnable implements Document {
 	private int limitationAge;
 	private static int aucuneLimitation = 0;
 	
@@ -39,6 +40,6 @@ public class Dvd extends DocumentEmpruntable {
 	}
 	
 	public boolean depasseLimitationAge(Abonne ab) {
-		return !(ab.getAge() <= limitationAge && (limitationAge != aucuneLimitation));
+		return !(ab.getAge() < limitationAge && (limitationAge != aucuneLimitation));
 	}
 }
