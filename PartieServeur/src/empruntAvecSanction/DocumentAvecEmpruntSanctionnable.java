@@ -49,6 +49,7 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	
 	@Override
 	public void retour() throws RetourException {
+		Abonne abonneRetourneur = emprunteur;
 		if (getEmprunteur() == null ) {
 			System.out.println("emprunteur null");
 		}
@@ -66,7 +67,7 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 		emprunteur = null;
 		if (this.aSubiDegradation()) {
 			throw new RetourException(
-					new InterditDempruntException("dégradé", this.getEmprunteur(), this)
+					new InterditDempruntException("dégradé", abonneRetourneur, this)
 					);
 		}
 	}
