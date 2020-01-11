@@ -1,8 +1,6 @@
 package serveur;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-
 import services.ServiceEmprunt;
 
 public class ServeurEmprunt extends Serveur implements Runnable {

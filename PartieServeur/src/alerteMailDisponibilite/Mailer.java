@@ -1,9 +1,6 @@
 package alerteMailDisponibilite;
 
 import java.util.Properties;
-import java.util.Timer;
-import java.util.TimerTask;
-
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.PasswordAuthentication;
@@ -13,7 +10,6 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
 import bibliotheque.Abonne;
-import bibliotheque.Document;
 import documentEmpruntable.DocumentEmpruntable;
 import documentEmpruntable.ReservationException;
 

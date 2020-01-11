@@ -7,12 +7,10 @@ import bibliotheque.Abonne;
 
 public class MinuteurInterdictionDemprunt {
 	private Timer timer;
-	private Abonne ab;
 	
 	public MinuteurInterdictionDemprunt(Abonne ab, String motif, int dureeInterdictionEnJour) {
 		System.out.println("L'abonne " + ab.getNom() + " possédant l'identifiant " + ab.getId() +
 				 " s'est vu interdit d'emprunt de livre avec pour motif : " + motif);
-		this.ab = ab;
 		timer = new Timer();
 		timer.schedule(new TimerTask() {
 			@Override

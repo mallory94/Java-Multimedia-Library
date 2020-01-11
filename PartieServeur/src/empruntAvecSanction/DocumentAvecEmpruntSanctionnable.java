@@ -1,8 +1,6 @@
 package empruntAvecSanction;
 
 import java.util.HashMap;
-import java.util.Random;
-
 import bibliotheque.Abonne;
 import bibliotheque.Document;
 import bibliotheque.EmpruntException;
@@ -53,10 +51,7 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 			System.out.println("emprunteur null");
 		}
 		int nombreAlea = (int) (Math.random() * ( 3 - 0 ) + 1);
-		//if (nombreAlea == 1) {
-		if (true) {
-			//syso à supprimer
-			System.out.println("document est degrade");
+		if (nombreAlea == 1) {
 			this.degrade();
 		}
 		if (super.estEmprunte() && this.aSubiDegradation()) {
@@ -70,7 +65,7 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 					);
 		}
 	}
-	
+
 	public boolean aSubiDegradation() {
 		return(etatDegradation == EtatDegradation.DEGRADE);
 	}

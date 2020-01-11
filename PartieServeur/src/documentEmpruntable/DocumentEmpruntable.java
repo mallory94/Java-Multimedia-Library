@@ -1,7 +1,5 @@
 package documentEmpruntable;
 
-import javax.sql.rowset.spi.SyncResolver;
-
 import bibliotheque.Abonne;
 import bibliotheque.Document;
 import bibliotheque.EmpruntException;

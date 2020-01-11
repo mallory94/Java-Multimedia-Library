@@ -1,8 +1,6 @@
 package serveur;
 
 import java.io.IOException;
-import java.net.ServerSocket;
-
 import services.ServiceReservation;
 
 public class ServeurReservation extends Serveur implements Runnable {

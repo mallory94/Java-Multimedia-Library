@@ -7,10 +7,7 @@ import java.io.PrintWriter;
 import java.net.Socket;
 
 import alerteMailDisponibilite.Mailer;
-import bibliotheque.Abonne;
-import bibliotheque.Document;
 import bibliotheque.EmpruntException;
-import documentEmpruntable.ReservationException;
 import serveur.Mediatheque;
 
 public class ServiceReservation extends Service implements Runnable{
