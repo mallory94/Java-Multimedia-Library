@@ -15,13 +15,14 @@ public class ServiceEmprunt extends Service implements Runnable {
 	}
 	
 	public void run() {
-
+		BufferedReader in = null;
+		PrintWriter out = null;
 		System.out.println("*********Connexion "+this.getNumero()+" démarrée");
 		try {
-			BufferedReader in = new BufferedReader(
+			in = new BufferedReader(
 					new InputStreamReader(this.getSocket().getInputStream())
 					);
-			PrintWriter out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
+			out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
 			out.println("Tapez le numéro d'un document a Emprunter :");
 			String reponse = in.readLine();
 			Integer numDocLu = null;
@@ -52,12 +53,22 @@ public class ServiceEmprunt extends Service implements Runnable {
 					
 				}
 			}
-			
+			in.close();
+			out.close();
 			
 		}
 		//catch l'Emprunt exception
 		catch (IOException e) {
 			e.printStackTrace();
+		}
+		finally {
+			try {
+				in.close();
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 		

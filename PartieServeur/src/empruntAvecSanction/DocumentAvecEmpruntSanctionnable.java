@@ -70,7 +70,6 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	
 	
 	public void sanctionnerEmprunteur(String motif) {
-		System.out.println("sanctionne");
 		int sanctionStandarde = 1;
 		synchronized (abonnesInterditsDemprunt) {
 			abonnesInterditsDemprunt.put(getEmprunteur(), new MinuteurInterdictionDemprunt(getEmprunteur(), 

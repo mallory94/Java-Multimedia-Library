@@ -27,11 +27,22 @@ public class AppliClienteReservation {
 			socketOut.println(sc.nextLine());
 			//donne un retour sur la reservation
 			System.out.println(socketIn.readLine());
+			String reponse = null;
 			try {
-				System.out.println(socketIn.readLine());
-				socketOut.println(sc.nextLine());
-				System.out.println(socketIn.readLine());
+				reponse = socketIn.readLine();
+				if (reponse != null) {
+					System.out.println(reponse);
+					socketOut.println(sc.nextLine());
+					reponse = socketIn.readLine();
+					if (reponse != null) {
+						System.out.println(socketIn.readLine());
+					}
+				}
+				
 			}
+			
+			
+			
 			catch (Exception e) {
 				
 			}

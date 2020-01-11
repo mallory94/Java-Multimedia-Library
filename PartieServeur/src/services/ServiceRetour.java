@@ -42,6 +42,9 @@ public class ServiceRetour extends Service implements Runnable{
 					e.printStackTrace();
 				}
 			}
+			in.close();
+			out.close();
+			getSocket().close();
 		}
 		catch (IOException e) {
 			System.out.println("Erreur lors de la manipulation de socket");
@@ -50,6 +53,7 @@ public class ServiceRetour extends Service implements Runnable{
 			try {
 				in.close();
 				out.close();
+				getSocket().close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

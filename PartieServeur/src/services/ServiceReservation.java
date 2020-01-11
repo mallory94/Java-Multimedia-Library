@@ -65,7 +65,6 @@ public class ServiceReservation extends Service implements Runnable{
 							//}
 							if (aReponduCorrectement) {
 								if (reponse3.equals("o")) {
-									System.out.println(e.getReservException().getAboVoulantEmprunter() + " " + e.getReservException().getDocConcerne());
 									new Mailer(e.getReservException());
 								}
 							}
@@ -75,7 +74,7 @@ public class ServiceReservation extends Service implements Runnable{
 			}
 			in.close();
 			out.close();
-			
+			getSocket().close();
 		}
 		//catch l'Emprunt exception
 		catch (IOException e) {
