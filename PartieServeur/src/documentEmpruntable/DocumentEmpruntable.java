@@ -35,14 +35,12 @@ public class DocumentEmpruntable implements Document {
 					minuteur = new Minuteur(this);
 				}
 				else {
-					System.out.println("ici");
 					throw new EmpruntException(new DejaEmprunteException(),
 												new ReservationException(ab,this));
 					
 				}
 			}
 			else {
-				System.out.println("là");
 				throw new EmpruntException(new DejaReserverException(),
 											new ReservationException(ab,this));
 				

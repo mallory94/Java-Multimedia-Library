@@ -17,11 +17,13 @@ public class ServiceRetour extends Service implements Runnable{
 	
 	@Override
 	public void run() {
+		BufferedReader in = null;
+		PrintWriter out = null;
 		try {
-			BufferedReader in = new BufferedReader(
+			in = new BufferedReader(
 					new InputStreamReader(this.getSocket().getInputStream())
 					);
-			PrintWriter out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
+			out = new PrintWriter (this.getSocket().getOutputStream ( ), true);
 			out.println("Entrez le numero du document à retourner :");
 			String reponse = in.readLine();
 			Integer numeroLu = null;
@@ -43,6 +45,15 @@ public class ServiceRetour extends Service implements Runnable{
 		}
 		catch (IOException e) {
 			System.out.println("Erreur lors de la manipulation de socket");
+		}
+		finally {
+			try {
+				in.close();
+				out.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		}
 		
 	}

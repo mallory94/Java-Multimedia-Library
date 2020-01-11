@@ -12,8 +12,6 @@ public class ReservationException extends Exception {
 	
 	public ReservationException(Abonne aboVoulantEmprunter, DocumentEmpruntable doc) {
 		super();
-		System.out.println("création de la reservation exception avec " + aboVoulantEmprunter.getNom() + "possèdant le mail " + aboVoulantEmprunter.getMail() + 
-				 " et le document " + doc.getTitre() + " qui a le num " + doc.getNumero());
 		this.aboVoulantEmprunter = aboVoulantEmprunter;
 		this.doc = doc;
 	}

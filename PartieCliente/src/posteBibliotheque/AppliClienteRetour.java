@@ -22,10 +22,14 @@ public class AppliClienteRetour {
 			System.out.println(socketIn.readLine());
 			socketOut.println(sc.nextLine());
 
-			
-			System.out.println(socketIn.readLine());
-			System.out.println(socketIn.readLine());
-			System.out.println(socketIn.readLine());
+			String reponse;
+			for (int i = 0; i <= 2; i++) {
+				reponse = null;
+				reponse = socketIn.readLine();
+				if (reponse != null) {
+					System.out.println(reponse);
+				}
+			}
 			
 			
 			try {
