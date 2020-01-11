@@ -10,17 +10,19 @@ public class Abonne {
 	private Date dateNaissance;
 	private int id;
 	private String nom;
+	private String mail;
 	
 	public Abonne() {
 		id = cpt++;
 	}
 	
 	@SuppressWarnings("deprecation")
-	public Abonne(String nom, String Age) {
+	public Abonne(String nom, String Age, String mail) {
 		this();
 		dateNaissance = new Date(Age);
 		System.out.println(this.getAge());
 		this.nom = nom;
+		this.mail = mail;
 	}
 	
 	public int getId() {
@@ -29,6 +31,9 @@ public class Abonne {
 
 	public String getNom() {
 		return nom;
+	}
+	public String getMail() {
+		return mail;
 	}
 	
 	public int getAge() {

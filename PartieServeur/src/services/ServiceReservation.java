@@ -6,7 +6,11 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
+import alerteMailDisponibilite.Mailer;
+import bibliotheque.Abonne;
+import bibliotheque.Document;
 import bibliotheque.EmpruntException;
+import documentEmpruntable.ReservationException;
 import serveur.Mediatheque;
 
 public class ServiceReservation extends Service implements Runnable{
@@ -49,8 +53,23 @@ public class ServiceReservation extends Service implements Runnable{
 					} catch (EmpruntException e) {
 						out.println(e.getMsgUtilisateur());
 						e.printStackTrace();
-						if (e.estDejaReserverOuEmprunterException()) {
-							
+						if (e.alerteMailPossible()) {
+							boolean aReponduCorrectement = false;
+							String reponse3 = null;
+							//while (!aReponduCorrectement) {
+								out.println("Voulez-vous recevoir une alerte par mail quand le document sera disponible? "
+									+ "Entrez O pour 'oui' ou n pour 'non'");
+								reponse3 = in.readLine().trim().toLowerCase();
+								if (reponse3.equals("o") || reponse3.equals("n") ) {
+									aReponduCorrectement = true;
+								}
+							//}
+							if (aReponduCorrectement) {
+								if (reponse3.equals("o")) {
+									System.out.println(e.getReservException().getAboVoulantEmprunter() + " " + e.getReservException().getDocConcerne());
+									new Mailer(e.getReservException());
+								}
+							}
 						}
 					}
 				}

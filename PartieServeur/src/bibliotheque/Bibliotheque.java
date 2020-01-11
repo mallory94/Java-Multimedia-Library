@@ -25,8 +25,8 @@ public class Bibliotheque implements Mediatheque {
 		throw new RechercheAbonneException(idAbonne);
 	}
 	
-	public void ajouterAbonne(String nomAbo, String dateNaissance) {
-		abonnes.add(new Abonne(nomAbo, dateNaissance));
+	public void ajouterAbonne(String nomAbo, String dateNaissance, String mail) {
+		abonnes.add(new Abonne(nomAbo, dateNaissance, mail));
 	}
 	
 	public  void ajouterDocument(Document doc) {
@@ -75,5 +75,6 @@ public class Bibliotheque implements Mediatheque {
 	public Mediatheque getReference() {
 		return((Mediatheque) this);
 	}
+	
 
 }

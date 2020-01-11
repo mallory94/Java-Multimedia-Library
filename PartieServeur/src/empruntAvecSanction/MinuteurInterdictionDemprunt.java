@@ -1,10 +1,9 @@
-package minuteur;
+package empruntAvecSanction;
 
 import java.util.Timer;
 import java.util.TimerTask;
 
 import bibliotheque.Abonne;
-import empruntAvecSanction.DocumentAvecEmpruntSanctionnable;
 
 public class MinuteurInterdictionDemprunt {
 	private Timer timer;

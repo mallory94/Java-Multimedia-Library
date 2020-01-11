@@ -18,14 +18,23 @@ public class AppliClienteReservation {
 			BufferedReader socketIn = new BufferedReader(
 					new InputStreamReader(maSocket.getInputStream()));
 			PrintWriter socketOut = new PrintWriter(maSocket.getOutputStream(),true);
-
+			
+			//demande le numéro du document à reserver
 			System.out.println(socketIn.readLine());
 			socketOut.println(sc.nextLine());
-
+			//demande l'identifiant utilisateur
 			System.out.println(socketIn.readLine());
 			socketOut.println(sc.nextLine());
-
+			//donne un retour sur la reservation
 			System.out.println(socketIn.readLine());
+			try {
+				System.out.println(socketIn.readLine());
+				socketOut.println(sc.nextLine());
+				System.out.println(socketIn.readLine());
+			}
+			catch (Exception e) {
+				
+			}
 			try {
 				maSocket.close();
 			} catch (Exception e2) {

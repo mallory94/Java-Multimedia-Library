@@ -9,7 +9,6 @@ import bibliotheque.EmpruntException;
 import bibliotheque.RetourException;
 import documentEmpruntable.DocumentEmpruntable;
 import documentEmpruntable.ReservationException;
-import minuteur.MinuteurInterdictionDemprunt;
 
 public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implements Document{
 	private static HashMap<Abonne, MinuteurInterdictionDemprunt> abonnesInterditsDemprunt = new HashMap<Abonne, MinuteurInterdictionDemprunt>();

@@ -1,5 +1,7 @@
 package documentEmpruntable;
 
+import javax.sql.rowset.spi.SyncResolver;
+
 import bibliotheque.Abonne;
 import bibliotheque.Document;
 import bibliotheque.EmpruntException;
@@ -35,15 +37,18 @@ public class DocumentEmpruntable implements Document {
 					minuteur = new Minuteur(this);
 				}
 				else {
-					throw new EmpruntException(new DejaEmprunteException(ab.getNom()),
-												new ReservationException());
+					System.out.println("ici");
+					throw new EmpruntException(new DejaEmprunteException(),
+												new ReservationException(ab,this));
+					
 				}
 			}
 			else {
-				throw new EmpruntException(new DejaReserverException(ab.getNom()),
-											new ReservationException());
+				System.out.println("là");
+				throw new EmpruntException(new DejaReserverException(),
+											new ReservationException(ab,this));
+				
 			}
-			this.notifyAll();
 		}
 		
 	}
@@ -79,14 +84,14 @@ public class DocumentEmpruntable implements Document {
 
 				
 			} else {
-				throw new EmpruntException(new DejaEmprunteException(ab.getNom()));
+				throw new EmpruntException(new DejaEmprunteException());
 			}
-			this.notifyAll();
 		}
 	}
 
 	
 	public void retour() throws RetourException {
+		boolean annulationReservation = false;
 		synchronized (this) {
 			if (this.estEmprunte == false && this.abonneReserver == null) {
 				throw new RetourException(new NonEmprunteNonReserverException(this.numero));
@@ -95,11 +100,14 @@ public class DocumentEmpruntable implements Document {
 				this.abonneReserver = null;
 				minuteur.annuler();
 				minuteur = null;
-				System.out.println("La réservation du document \"" + nom + "\" s'est vue annulée parce que "
-						+ "l'abonné l'ayant réservé a procédé l'annulation de la réservation");
+				annulationReservation = true;
 			}
 			this.estEmprunte = false;
 			this.notifyAll();
+		}
+		if (annulationReservation) {
+			System.out.println("La réservation du document \"" + nom + "\" s'est vue annulée parce que "
+				+ "l'abonné l'ayant réservé a procédé l'annulation de la réservation");
 		}
 	}
 	
@@ -110,7 +118,6 @@ public class DocumentEmpruntable implements Document {
 				minuteur.annuler();
 				minuteur = null;
 			}
-			this.notifyAll();
 		}
 	}
 	
@@ -118,7 +125,7 @@ public class DocumentEmpruntable implements Document {
 		return nom;
 	}
 	
-	public boolean estEmprunte() {
+	public synchronized boolean estEmprunte() {
 		return(estEmprunte);
 	}
 }

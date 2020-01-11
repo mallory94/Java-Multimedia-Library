@@ -25,7 +25,7 @@ public class InterditDempruntException extends Exception {
 	public InterditDempruntException(String motif, Abonne ab, 
 			DocumentAvecEmpruntSanctionnable doc) {
 		super("L'utilisateur " + ab.getNom() + " immatriculé " + ab.getId() + " a "
-				+ "vient d'être interdit d'emprunt parce que le document qu'il a rendu ");
+				+ "vient d'être interdit d'emprunt parce que le document qu'il a rendu est dégradé");
 		msgUtilisateur = "Le retour de votre document a bien été enregistré cependant "
 			+ "le document rendu a été " + motif + ". Cela vous vaudra 1 mois (30 jours) d'i"
 			+ "nterdiction d'emprunt.";
