@@ -18,11 +18,8 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 		super(nom);
 	}
 	
-	
-	
 	@Override
 	public void reserver(Abonne ab) throws EmpruntException {
-		
 		if (!ParamAboEstInterdit(ab)) {
 			super.reserver(ab);
 		}
@@ -46,17 +43,14 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	
 	@Override
 	public void retour() throws RetourException {
-		Abonne abonneRetourneur = emprunteur;
-		if (getEmprunteur() == null ) {
-			System.out.println("emprunteur null");
-		}
+		Abonne abonneRetourneur = getEmprunteur();
 		int nombreAlea = (int) (Math.random() * ( 3 - 0 ) + 1);
 		if (nombreAlea == 1) {
 			this.degrade();
 		}
 		if (super.estEmprunte() && this.aSubiDegradation()) {
 				sanctionnerEmprunteur("dégradation de document");
-			}
+		}
 		super.retour();
 		emprunteur = null;
 		if (this.aSubiDegradation()) {
@@ -70,7 +64,7 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 		return(etatDegradation == EtatDegradation.DEGRADE);
 	}
 	
-	public Abonne getEmprunteur() {
+	public synchronized Abonne getEmprunteur() {
 		return(emprunteur);
 	}
 	
@@ -103,10 +97,14 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	}
 	
 	public void reparerDocument() {
-		etatDegradation = EtatDegradation.NONDEGRADE;
+		synchronized (this) {
+			etatDegradation = EtatDegradation.NONDEGRADE;
+		}
 	}
 	
 	public void degrade() {
-		etatDegradation = EtatDegradation.DEGRADE;
+		synchronized (this) {
+			etatDegradation = EtatDegradation.DEGRADE;
+		}
 	}
 }
