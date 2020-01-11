@@ -15,8 +15,9 @@ public class appliServer {
 	public static void main(String[] args) {
 		Bibliotheque bibliotheque = new Bibliotheque();
 		//l'age est à renseigné en format ANGLAIS !   Mois/Jour/Année
-		bibliotheque.ajouterAbonne("Jean", "01/10/2008", "salutamyamigo@gmail.com");
+		bibliotheque.ajouterAbonne("Jean", "03/10/2008", "salutamyamigo@gmail.com");
 		bibliotheque.ajouterAbonne("Claude", "01/01/2008", "malloga94@gmail.com");
+		bibliotheque.ajouterAbonne("Brette", "05/02/1989", "malloga94@gmail.com");
 		bibliotheque.ajouterDocument(new DocumentAvecEmpruntSanctionnable("Luc va a la plage"));
 		bibliotheque.ajouterDocument(new DocumentAvecEmpruntSanctionnable("Comment réussir tous ses DST en 10 étapes"));
 		bibliotheque.ajouterDocument(new Dvd("Le grand bleu"));

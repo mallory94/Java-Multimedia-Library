@@ -20,7 +20,6 @@ public class Abonne {
 	public Abonne(String nom, String Age, String mail) {
 		this();
 		dateNaissance = new Date(Age);
-		System.out.println(this.getAge());
 		this.nom = nom;
 		this.mail = mail;
 	}
