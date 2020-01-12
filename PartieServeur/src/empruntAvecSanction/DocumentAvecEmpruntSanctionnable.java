@@ -13,6 +13,8 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 			new HashMap<Abonne, MinuteurInterdictionDemprunt>();
 	private EtatDegradation etatDegradation;
 	private Abonne emprunteur;
+	private boolean enRetard = false;
+	private MinuteurRetard minuteurRetard = null;
 	
 	
 	public DocumentAvecEmpruntSanctionnable(String nom) {
@@ -33,9 +35,11 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	
 	@Override
 	public void emprunter(Abonne ab) throws EmpruntException  {
+		int dureeEmpruntStandarde = 1;
 		if (!ParamAboEstInterdit(ab)) {
 			super.emprunter(ab);
 			emprunteur = ab;
+			minuteurRetard = new MinuteurRetard(ab,this, dureeEmpruntStandarde);
 		}
 		else {
 			throw new EmpruntException(new InterditDempruntException(ab, this.getNumero()));
@@ -44,12 +48,14 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	
 	@Override
 	public void retour() throws RetourException {
+		minuteurRetard.annuler();
+		minuteurRetard = null;
 		Abonne abonneRetourneur = getEmprunteur();
 		int nombreAlea = (int) (Math.random() * ( 3 - 0 ) + 1);
 		if (nombreAlea == 1) {
 			this.degrade();
 		}
-		if (super.estEmprunte() && this.aSubiDegradation()) {
+		if (super.estEmprunte() && (this.aSubiDegradation() || this.enRetard)) {
 				sanctionnerEmprunteur("dégradation de document");
 		}
 		super.retour();
@@ -59,6 +65,10 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 					new InterditDempruntException("dégradé", abonneRetourneur, this)
 					);
 		}
+		if (this.enRetard) {
+			throw new RetourException( new InterditDempruntException("en retard", abonneRetourneur, this));
+		}
+		setEnRetard(false);
 	}
 
 	public boolean aSubiDegradation() {
@@ -103,5 +113,9 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 		synchronized (this) {
 			etatDegradation = EtatDegradation.DEGRADE;
 		}
+	}
+	
+	public synchronized void setEnRetard(boolean enRetard) {
+		this.enRetard = enRetard; 
 	}
 }

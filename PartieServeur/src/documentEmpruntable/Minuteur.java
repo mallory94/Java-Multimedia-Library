@@ -18,6 +18,9 @@ public class Minuteur {
 				System.out.println("La réservation du document \"" + document.getTitre() + "\" s'est vue annulée"
 						+ " car l'abonné ayant réservé n'a pas procédé à l'emprunt avant"
 						+ " la fin de la durée de la réservation." );
+				synchronized (documentReserve) {
+					documentReserve.notifyAll();
+				}
 			}
 		}, 1000 * 20);
 	}

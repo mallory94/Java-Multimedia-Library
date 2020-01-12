@@ -7,7 +7,7 @@ import bibliotheque.RetourException;
 
 public class DocumentEmpruntable implements Document {
 
-	private Minuteur minuteur;
+	private Minuteur minuteur = null;
 	private static int cpt = 0;
 	private int numero;
 	private String nom;
@@ -73,7 +73,7 @@ public class DocumentEmpruntable implements Document {
 				throw new EmpruntException(new DejaEmprunteException());
 			}
 		}
-		if (reservationAnnulee = true) {
+		if (reservationAnnulee == true) {
 			System.out.println("La réservation du document \"" + nom + "\" s'est vue annulée parce que "
 					+ "l'abonné l'ayant réservé a procédé à son emprunt");
 		}
