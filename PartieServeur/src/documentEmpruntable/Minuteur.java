@@ -22,7 +22,7 @@ public class Minuteur {
 					documentReserve.notifyAll();
 				}
 			}
-		}, 1000 * 20);
+		}, 1000 * 60 * 60 * 2);
 	}
 	
 	public void annuler() {

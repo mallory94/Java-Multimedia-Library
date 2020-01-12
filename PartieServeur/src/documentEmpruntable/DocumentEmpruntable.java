@@ -49,7 +49,6 @@ public class DocumentEmpruntable implements Document {
 	}
 	
 	public void emprunter(Abonne ab) throws EmpruntException {
-		@SuppressWarnings("unused")
 		boolean reservationAnnulee = false;
 		synchronized (this) {
 			if ( estEmprunte == false ) {
