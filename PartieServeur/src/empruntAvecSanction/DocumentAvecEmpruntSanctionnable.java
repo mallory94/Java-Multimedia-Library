@@ -48,7 +48,11 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	
 	@Override
 	public void retour() throws RetourException {
-		minuteurRetard.annuler();
+		try {
+			minuteurRetard.annuler();
+		}
+		catch (NullPointerException e) {
+		}
 		minuteurRetard = null;
 		Abonne abonneRetourneur = getEmprunteur();
 		int nombreAlea = (int) (Math.random() * ( 3 - 0 ) + 1);
