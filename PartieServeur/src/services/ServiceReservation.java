@@ -55,14 +55,12 @@ public class ServiceReservation extends Service implements Runnable{
 						if (e.alerteMailPossible()) {
 							boolean aReponduCorrectement = false;
 							String reponse3 = null;
-							//while (!aReponduCorrectement) {
-								out.println("Voulez-vous recevoir une alerte par mail quand le document sera disponible? "
-									+ "Entrez O pour 'oui' ou n pour 'non'");
-								reponse3 = in.readLine().trim().toLowerCase();
-								if (reponse3.equals("o") || reponse3.equals("n") ) {
-									aReponduCorrectement = true;
-								}
-							//}
+							out.println("Voulez-vous recevoir une alerte par mail quand le document sera disponible? "
+								+ "Entrez O pour 'oui' ou n pour 'non'");
+							reponse3 = in.readLine().trim().toLowerCase();
+							if (reponse3.equals("o") || reponse3.equals("n") ) {
+								aReponduCorrectement = true;
+							}
 							if (aReponduCorrectement) {
 								if (reponse3.equals("o")) {
 									new Mailer(e.getReservException());

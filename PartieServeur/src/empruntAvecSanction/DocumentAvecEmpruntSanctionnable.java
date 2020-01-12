@@ -9,7 +9,8 @@ import documentEmpruntable.DocumentEmpruntable;
 import documentEmpruntable.ReservationException;
 
 public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implements Document{
-	private static HashMap<Abonne, MinuteurInterdictionDemprunt> abonnesInterditsDemprunt = new HashMap<Abonne, MinuteurInterdictionDemprunt>();
+	private static HashMap<Abonne, MinuteurInterdictionDemprunt> abonnesInterditsDemprunt =
+			new HashMap<Abonne, MinuteurInterdictionDemprunt>();
 	private EtatDegradation etatDegradation;
 	private Abonne emprunteur;
 	
@@ -70,18 +71,16 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 	
 	
 	public void sanctionnerEmprunteur(String motif) {
-		int sanctionStandarde = 1;
+		int sanctionStandarde = 30;
 		synchronized (abonnesInterditsDemprunt) {
 			abonnesInterditsDemprunt.put(getEmprunteur(), new MinuteurInterdictionDemprunt(getEmprunteur(), 
 					motif, sanctionStandarde));
-			abonnesInterditsDemprunt.notifyAll();
 		}
 	}
 	
 	public static void retirerInterdictionAbonne(Abonne ab) {
 		synchronized (abonnesInterditsDemprunt) {
 			abonnesInterditsDemprunt.remove(ab);
-			abonnesInterditsDemprunt.notifyAll();
 		}
 	}
 	
@@ -90,7 +89,6 @@ public class DocumentAvecEmpruntSanctionnable extends DocumentEmpruntable implem
 		boolean estInterdit = false;
 		synchronized (abonnesInterditsDemprunt) {
 			estInterdit = abonnesInterditsDemprunt.containsKey(ab);
-			abonnesInterditsDemprunt.notifyAll();
 		}
 		return(estInterdit);
 	}

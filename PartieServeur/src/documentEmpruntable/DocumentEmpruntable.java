@@ -45,21 +45,13 @@ public class DocumentEmpruntable implements Document {
 											new ReservationException(ab,this));
 				
 			}
-		}
-		
+		}	
 	}
-
+	
 	public void emprunter(Abonne ab) throws EmpruntException {
+		@SuppressWarnings("unused")
+		boolean reservationAnnulee = false;
 		synchronized (this) {
-//			try {
-//				if (ab.getId() == 0) {
-//					System.out.println("attends");
-//					Thread.sleep(1000*30);
-//					
-//				}
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
 			if ( estEmprunte == false ) {
 				if 	( ab == this.abonneReserver || this.abonneReserver == null) {
 					this.estEmprunte = true;
@@ -70,18 +62,20 @@ public class DocumentEmpruntable implements Document {
 					if (minuteur != null ) {
 						minuteur.annuler();
 						minuteur = null;
-						System.out.println("La réservation du document \"" + nom + "\" s'est vue annulée parce que "
-								+ "l'abonné l'ayant réservé a procédé à son emprunt");
+						reservationAnnulee = true;
 					}
 				}
 				else {
 					throw new EmpruntException(new DejaReserverException(ab.getNom()));
 				}
-
 				
 			} else {
 				throw new EmpruntException(new DejaEmprunteException());
 			}
+		}
+		if (reservationAnnulee = true) {
+			System.out.println("La réservation du document \"" + nom + "\" s'est vue annulée parce que "
+					+ "l'abonné l'ayant réservé a procédé à son emprunt");
 		}
 	}
 
